@@ -8,7 +8,8 @@ class CustomUser(AbstractUser):
     avatar = models.ImageField(upload_to="users/avatars/", null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     headline = models.CharField(max_length=100, null=True, blank=True)
-
+    email = models.EmailField(max_length=50,unique=True)
+    # username = models.CharField(max_length=50, unique=False,null=True,blank=True)
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
@@ -19,10 +20,11 @@ class CustomUser(AbstractUser):
         today = datetime.date.today()
         return today.year - self.birth_date.year
 
-    objects = CustomUserManager()
     def __str__(self):
         return self.username
-
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()
 
 
 
