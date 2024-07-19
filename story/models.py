@@ -49,7 +49,7 @@ class FollowToTopic(BaseModel):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} follows {self.topic.title}"
+        return f"{self.user.email} follows {self.topic.title}"
 
 
 class ReadStory(BaseModel):
@@ -57,7 +57,7 @@ class ReadStory(BaseModel):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} read a {self.story.title}"
+        return f"{self.user.email} read a {self.story.title}"
 
 
 class Clap(models.Model):
@@ -66,7 +66,7 @@ class Clap(models.Model):
     count = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
 
     def __str__(self):
-        return f"Clapped by {self.user.username} with {self.count} count"
+        return f"Clapped by {self.user.email} with {self.count} count"
 
 
 class Comment(BaseModel):
@@ -75,7 +75,7 @@ class Comment(BaseModel):
     message = models.TextField()
 
     def __str__(self):
-        return f'Comment by {self.user.username} on {self.created_at}'
+        return f'Comment by {self.user.email} on {self.created_at}'
 
 
 class FollowAuthor(BaseModel):
@@ -83,5 +83,5 @@ class FollowAuthor(BaseModel):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE,related_name='authored_follows')
 
     def __str__(self):
-        return f"{self.user.username} follows {self.author.username}"
+        return f"{self.user.email} follows {self.author.email}"
 

@@ -7,7 +7,7 @@ from user.models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'birth_date']
+        fields = ['id', 'email', 'birth_date']
 
 
 class TopicSerializer(serializers.ModelSerializer):

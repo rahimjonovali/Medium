@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     bio = models.TextField(null=True, blank=True)
     headline = models.CharField(max_length=100, null=True, blank=True)
     email = models.EmailField(max_length=50,unique=True)
-    # username = models.CharField(max_length=50, unique=False,null=True,blank=True)
+    username = None
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
         return today.year - self.birth_date.year
 
     def __str__(self):
-        return self.username
+        return self.email
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()

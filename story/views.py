@@ -73,7 +73,7 @@ class FollowAuthorDetailView(generics.RetrieveUpdateDestroyAPIView):
 class TopicView(generics.ListCreateAPIView):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
-
+    permission_classes = [permissions.AllowAny]
 class TopicDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
