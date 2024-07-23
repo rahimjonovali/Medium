@@ -4,6 +4,7 @@ from .manager import CustomUserManager
 from config.model import BaseModel
 
 class CustomUser(AbstractUser):
+
     birth_date = models.DateField(null=True, blank=True)
     avatar = models.ImageField(upload_to="users/avatars/", null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
